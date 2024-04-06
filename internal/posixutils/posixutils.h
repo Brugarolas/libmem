@@ -20,13 +20,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBMEM_HPP
-#define LIBMEM_HPP
+#ifndef POSIXUTILS_H
+#define POSIXUTILS_H
 
-#ifndef __cplusplus
-#	define __cplusplus 1
-#endif
+#include <stdlib.h>
 
-#include "libmem.h"
+size_t
+get_system_bits();
+
+size_t
+get_name_from_path(char *path, char *namebuf, size_t namesize);
 
 #endif

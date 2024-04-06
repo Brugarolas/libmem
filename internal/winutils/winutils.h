@@ -20,13 +20,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBMEM_HPP
-#define LIBMEM_HPP
+#ifndef WINUTILS_H
+#define WINUTILS_H
 
-#ifndef __cplusplus
-#	define __cplusplus 1
-#endif
+#include <stdlib.h>
+#include <stdint.h>
+#include <windows.h>
+#include <windef.h>
+#include <psapi.h>
+#include <tlhelp32.h>
+#include <winternl.h>
+#include <ntstatus.h>
 
-#include "libmem.h"
+char *
+wcstoutf8(WCHAR *widestr, char *utf8buf, size_t buflen);
+
+WCHAR *
+utf8towcs(char *utf8str, WCHAR *wcsbuf, size_t buflen);
+
+HANDLE
+open_process(DWORD pid, DWORD access);
+
+void
+close_handle(HANDLE handle);
+
+size_t
+get_system_bits();
+
+size_t
+get_process_bits(HANDLE hproc);
+
+BOOL
+get_process_start_time(HANDLE hproc, uint64_t *timestamp_out);
+
+BOOL
+enum_process_entries(BOOL (*callback)(PROCESSENTRY32W *entry, void *arg), void *arg);
 
 #endif

@@ -20,13 +20,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBMEM_HPP
-#define LIBMEM_HPP
+#include "utils.h"
+#include <assert.h>
 
-#ifndef __cplusplus
-#	define __cplusplus 1
-#endif
-
-#include "libmem.h"
-
-#endif
+lm_time_t
+get_process_start_time(struct kinfo_proc *proc)
+{
+	assert(proc != NULL);
+	
+	/* Turn the seconds and the microseconds from the 'struct timeval' into milliseconds */
+	return (lm_time_t)((proc->ki_start.tv_sec * 1000) + (proc->ki_start.tv_usec / 1000.0L));
+}

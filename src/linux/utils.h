@@ -20,13 +20,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBMEM_HPP
-#define LIBMEM_HPP
+#ifndef UTILS_H
+#define UTILS_H
 
-#ifndef __cplusplus
-#	define __cplusplus 1
-#endif
+#include <libmem/libmem.h>
 
-#include "libmem.h"
+lm_bool_t
+get_stat_info(lm_pid_t pid, lm_pid_t *ppid_out, lm_time_t *start_time_out);
+
+lm_size_t
+get_process_path(lm_pid_t pid, lm_char_t *pathbuf, size_t pathsize);
 
 #endif

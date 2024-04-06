@@ -20,13 +20,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBMEM_HPP
-#define LIBMEM_HPP
+#ifndef UTILS_H
+#define UTILS_H
 
-#ifndef __cplusplus
-#	define __cplusplus 1
-#endif
+#include <libmem/libmem.h>
+#include <unistd.h>
+#include <sys/user.h>
+#include <sys/sysctl.h>
+#include <libprocstat.h>
 
-#include "libmem.h"
+lm_time_t
+get_process_start_time(struct kinfo_proc *proc);
 
 #endif
